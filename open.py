@@ -5,8 +5,9 @@ class Open:
     with function to manipulate and modify the file.
     """
 
-    def __init__(self, path):
-        pass
+    def __init__(self, path, data):
+        self.data = data
+        print(data)
 
     def write_to_file(self, text, write_at=None):
         pass

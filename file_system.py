@@ -10,6 +10,7 @@ DIR_DELIMITER = '\$dir$'
 FILE_DELIMITER = '\$file$'
 PROCESS_DELIMITER = '\$process$'
 FRAME_DELIMITER = '\$memory$'
+CLEAR_DELIMITER = '\$clear$'
 CWD = '~/'
 DATA = dict()
 
@@ -34,6 +35,7 @@ def update_system():
     files = DATA['files']
     process = DATA['process']
     frames = DATA['frames']
+    clears = DATA['clear']
 
     # print(directories, files, process, frames)
 
@@ -57,7 +59,12 @@ def update_system():
             fst.write(FRAME_DELIMITER)
             for f in frames:
                 fst.write("%s\," % f)
-            fst.write(FRAME_DELIMITER)
+            fst.write(FRAME_DELIMITER + '\n')
+
+            fst.write(CLEAR_DELIMITER)
+            for c in clears:
+                fst.write("%s\," % c)
+            fst.write(CLEAR_DELIMITER)
     except IOError as e:
         raise e
         print('Cannot update system due to some error')
@@ -86,6 +93,11 @@ def get_data(file_system_data):
     except IndexError:
         DATA['frames'] = []
 
+    try:
+        DATA['clear'] = file_system_data.split(CLEAR_DELIMITER)[1].split('\,')[:-1]
+    except IndexError:
+        DATA['clear'] = []
+
 
 def list_dir():
     global DATA
@@ -105,7 +117,7 @@ def create(file_name):
     global DATA
     new_file = CWD + file_name
 
-    if new_file not in DATA['files']:
+    if new_file not in DATA['files'] and DATA['dir']:
         DATA['files'] += [new_file]
         update_system()
     else:
@@ -161,7 +173,7 @@ def move(source, destination):
 
 
 def open_file(file_name):
-    return Open(file_name)
+    return Open(file_name, DATA)
 
 
 def close_file(file_name):
