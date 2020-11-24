@@ -18,7 +18,7 @@ class Open:
             self.exists = False
             self.process = []
 
-        # print(self.data)
+        # print(self.process)
 
     def write_to_file(self, text, write_at=None):
         pages_left = self.get_page(text)
@@ -26,26 +26,27 @@ class Open:
 
         if write_at is None:
             new_text = self.read_from_file()
-            for i in self.process:
+            for i in self.process[:]:
                 # print(i)
-                # self.process.remove(i)
+                self.process.remove(i)
                 del self.data['frames'][i]
                 self.data['clear'] += [i]
-            self.process = []
+
             text = new_text + text
             pages_left = self.get_page(text)
 
-            # print(self.data)
             if len(self.data['clear']) > 0 and pages_left > 0:
-                for c in self.data['clear']:
-                    self.data['frames'][c] = text[text_start_idx:
+                for c in self.data['clear'][:]:
+                    self.data['frames'][int(c)] = text[text_start_idx:
                                                   text_start_idx + self.page_length]
-                    self.process += [c]
+                    self.process += [int(c)]
                     text_start_idx = text_start_idx + self.page_length
                     pages_left = pages_left - 1
                     self.data['clear'].remove(c)
+
                     if pages_left == 0:
                         break
+
             if pages_left > 0:
                 for i in range(pages_left):
                     self.data['frames'][self.first_free_frame] = text[text_start_idx:
@@ -58,27 +59,26 @@ class Open:
             newText = self.read_from_file()
             newText = newText[:write_at] + text
             process_len = len(self.process)
-            for i in self.process:
-                # self.process.remove(i)
+            for i in self.process[:]:
+                self.process.remove(i)
                 del self.data['frames'][i]
                 self.data['clear'] += [i]
-            # print(self.process)
-            self.process = []
+            
             target_page = -(-write_at // self.page_length)
             if target_page > process_len:
                 print('write_to_file(): write_at is invalid and out of bound')
             else:
                 pages_left = self.get_page(newText)
-                # print(self.data)
 
                 if len(self.data['clear']) > 0 and pages_left > 0:
-                    for c in self.data['clear']:
-                        self.data['frames'][c] = newText[text_start_idx:
+                    for c in self.data['clear'][:]:
+                        self.data['frames'][int(c)] = newText[text_start_idx:
                                                          text_start_idx + self.page_length]
-                        self.process += [c]
+                        self.process += [int(c)]
                         text_start_idx = text_start_idx + self.page_length
                         pages_left = pages_left - 1
                         self.data['clear'].remove(c)
+
                         if pages_left == 0:
                             break
 

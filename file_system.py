@@ -183,6 +183,7 @@ def close_file(file_name):
     global DATA
     DATA = data
     update_system()
+    print(DATA)
     print('system updated successfully!')
 
 
