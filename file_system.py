@@ -179,7 +179,11 @@ def open_file(file_name):
 
 
 def close_file(file_name):
-    pass
+    data = file_name.close()
+    global DATA
+    DATA = data
+    update_system()
+    print('system updated successfully!')
 
 
 def show_memory():

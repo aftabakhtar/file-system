@@ -23,6 +23,13 @@ class Open:
         text_start_idx = 0
 
         if write_at is None:
+            new_text = self.read_from_file()
+            for i in self.process:
+                self.process.remove(i)
+                del self.data['frames'][i]
+                self.data['clear'] += [i]
+            text = new_text + text
+            # print(self.data)
             if len(self.data['clear']) > 0 and pages_left > 0:
                 for c in self.data['clear']:
                     self.data['frames'][c] = text[text_start_idx:
@@ -30,6 +37,7 @@ class Open:
                     self.process += [c]
                     text_start_idx = text_start_idx + self.page_length
                     pages_left = pages_left - 1
+                    self.data['clear'].remove(c)
                     if pages_left == 0:
                         break
             if pages_left > 0:
@@ -41,28 +49,35 @@ class Open:
                     self.first_free_frame = self.first_free_frame + 1
 
         else:
+            newText = self.read_from_file()
+            newText = newText[:write_at] + text
+            process_len = len(self.process)
+            for i in self.process:
+                self.process.remove(i)
+                del self.data['frames'][i]
+                self.data['clear'] += [i]
+            # self.process = []
             target_page = -(-write_at // self.page_length)
-            if target_page > len(self.process):
+            if target_page > process_len:
                 print('write_to_file(): write_at is invalid and out of bound')
             else:
-                newText = self.read_from_file()
-                newText = newText[:write_at] + text
                 pages_left = self.get_page(newText)
-                for f in self.process:
-                    self.data['frames'][f] = newText[text_start_idx:text_start_idx + self.page_length]
+                # print(self.data)
 
                 if len(self.data['clear']) > 0 and pages_left > 0:
                     for c in self.data['clear']:
-                        self.data['frames'][c] = text[text_start_idx:
+                        self.data['frames'][c] = newText[text_start_idx:
                                                       text_start_idx + self.page_length]
                         self.process += [c]
                         text_start_idx = text_start_idx + self.page_length
                         pages_left = pages_left - 1
+                        self.data['clear'].remove(c)
                         if pages_left == 0:
                             break
+
                 if pages_left > 0:
                     for i in range(pages_left):
-                        self.data['frames'][self.first_free_frame] = text[text_start_idx:
+                        self.data['frames'][self.first_free_frame] = newText[text_start_idx:
                                                                           text_start_idx + self.page_length]
                         text_start_idx = text_start_idx + self.page_length
                         self.process += [self.first_free_frame]
@@ -75,8 +90,10 @@ class Open:
         if start is None and size is None:
             for i in self.process:
                 text += self.data['frames'][i]
-        print(self.process)
-        print(text)
+        else:
+            for i in self.process:
+                text += self.data['frames'][i]
+            text = text[start:start + size]
         return text
 
     def move_within_file(self, start, size, target):
@@ -87,3 +104,7 @@ class Open:
 
     def get_page(self, text):
         return -(-len(text) // self.page_length)
+
+    def close(self):
+        self.data['process'][self.path] = self.process
+        return self.data
