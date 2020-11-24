@@ -10,6 +10,7 @@ class Open:
         self.path = path
         self.page_length = 4096
         self.first_free_frame = len(data['frames'])
+        self.data['clear'] = [int(i) for i in self.data['clear']]
 
         if self.path in data['process']:
             self.exists = True
@@ -103,10 +104,16 @@ class Open:
         return text
 
     def move_within_file(self, start, size, target):
-        pass
+        text = self.read_from_file()
+        text_to_replace = self.read_from_file(start=start, size=size)
+        text = text[:start] + text[start + size:]
+        text = text[:target] + text_to_replace + text[target:]
+        self.write_to_file(text, write_at=0)
 
     def truncate_file(self, max_size):
-        pass
+        text = self.read_from_file()
+        text = text[0:max_size]
+        self.write_to_file(text, write_at=0)
 
     def get_page(self, text):
         return -(-len(text) // self.page_length)

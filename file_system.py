@@ -124,7 +124,18 @@ def create(file_name):
 
 
 def delete(file_name):
-    pass
+    global DATA
+    if file_name in DATA['files']:
+        process_storage = DATA['process'][file_name]
+        del DATA['process'][file_name]
+        for i in process_storage:
+            DATA['clear'] += [i]
+            del DATA['frames'][i]
+        DATA['files'].remove(file_name)
+        update_system()
+        print('successfully deleted %s', file_name)
+    else:
+        print('delete(): make sure file name or path is correct')
 
 
 def mk_dir(dir_name):
@@ -161,6 +172,7 @@ def move(source, destination):
         if file_name not in DATA['dir'] and file_name not in DATA['files']:
             DATA['files'] += [file_name]
             DATA['files'].remove(source)
+            DATA['process'][file_name] = DATA['process'].pop(source) # updating to new dictionary key
             update_system()
             print("successfully moved the data from {} to {}".format(source, destination))
         else:
@@ -183,7 +195,7 @@ def close_file(file_name):
     global DATA
     DATA = data
     update_system()
-    print(DATA)
+    # print(DATA)
     print('system updated successfully!')
 
 
