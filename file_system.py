@@ -1,3 +1,4 @@
+import ast
 from open import Open
 
 """
@@ -52,13 +53,11 @@ def update_system():
             fst.write(FILE_DELIMITER + '\n')
 
             fst.write(PROCESS_DELIMITER)
-            for p in process:
-                fst.write('%s\,' % p)
+            fst.write(str(process))
             fst.write(PROCESS_DELIMITER + '\n')
 
             fst.write(FRAME_DELIMITER)
-            for f in frames:
-                fst.write("%s\," % f)
+            fst.write(str(frames))
             fst.write(FRAME_DELIMITER + '\n')
 
             fst.write(CLEAR_DELIMITER)
@@ -84,14 +83,14 @@ def get_data(file_system_data):
         DATA['files'] = []
 
     try:
-        DATA['process'] = file_system_data.split(PROCESS_DELIMITER)[1].split('\,')[:-1]
+        DATA['process'] = ast.literal_eval(file_system_data.split(PROCESS_DELIMITER)[1])
     except IndexError:
-        DATA['process'] = []
+        DATA['process'] = {}
 
     try:
-        DATA['frames'] = file_system_data.split(FRAME_DELIMITER)[1].split('\,')[:-1]
+        DATA['frames'] = ast.literal_eval(file_system_data.split(FRAME_DELIMITER)[1])
     except IndexError:
-        DATA['frames'] = []
+        DATA['frames'] = {}
 
     try:
         DATA['clear'] = file_system_data.split(CLEAR_DELIMITER)[1].split('\,')[:-1]
@@ -173,7 +172,10 @@ def move(source, destination):
 
 
 def open_file(file_name):
-    return Open(file_name, DATA)
+    if file_name in DATA['files']:
+        return Open(file_name, DATA)
+    else:
+        print('open_file(): invalid path or file_name')
 
 
 def close_file(file_name):
