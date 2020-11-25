@@ -200,4 +200,23 @@ def close_file(file_name):
 
 
 def show_memory():
-    pass
+    print('=' * 40)
+    print('Process / Data Table')
+    print('=' * 40)
+    for p in DATA['process']:
+        print(str(p) + '\t\t' + str(DATA['process'][p]))
+    print()
+
+    print('=' * 40)
+    print('Memory Table')
+    print('=' * 40)
+    for p in DATA['frames']:
+        print(str(p) + '\t\t' + DATA['frames'][p])
+    print()
+
+    print('=' * 40)
+    print('Cleared Memory Table')
+    print('=' * 40)
+    for p in DATA['clear']:
+        print('Clear Frames:' + '\t\t' + str(p))
+    print()
