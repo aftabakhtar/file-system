@@ -8,7 +8,7 @@ class Open:
     def __init__(self, path, data):
         self.data = data
         self.path = path
-        self.page_length = 4096
+        self.page_length = 16
         self.first_free_frame = len(data['frames'])
         self.data['clear'] = [int(i) for i in self.data['clear']]
 

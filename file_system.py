@@ -5,7 +5,7 @@ from open import Open
 This script will be used to perform different actions on the
 file management system.
 """
-PAGE_SIZE = 4096
+PAGE_SIZE = 16
 FILE_SYSTEM = 'sample.fst'
 DIR_DELIMITER = '\$dir$'
 FILE_DELIMITER = '\$file$'
