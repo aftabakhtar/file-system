@@ -118,6 +118,7 @@ def create(file_name):
 
     if new_file not in DATA['files'] and DATA['dir']:
         DATA['files'] += [new_file]
+        DATA['process']['~/' + file_name] = []
         update_system()
     else:
         print('create(): cannot make file due to duplicate')
