@@ -10,6 +10,12 @@ class Open:
         self.path = path
         self.page_length = 16
         self.first_free_frame = len(data['frames'])
+        try:
+            clear_max = max([int(i) for i in self.data['clear']])
+        except ValueError:
+            clear_max = 0
+        if self.first_free_frame < clear_max:
+            self.first_free_frame = clear_max + 1
         self.data['clear'] = [int(i) for i in self.data['clear']]
 
         if self.path in data['process']:

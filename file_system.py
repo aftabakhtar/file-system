@@ -153,8 +153,11 @@ def mk_dir(dir_name):
 def ch_dir(dir_name):
     global CWD
 
-    if CWD + dir_name in DATA['dir']:
-        CWD = CWD + dir_name + '/'
+    if dir_name in DATA['dir']:
+        if dir_name == '~/':
+            CWD = dir_name
+        else:
+            CWD = dir_name + '/'
         print('successfully changed directory to %s' % dir_name)
         print('cwd: %s' % CWD)
     else:
