@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2539ce1-dd0b-4ee3-a93d-fb7bcbfe69f6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab-5/file_system.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab-5/file_system.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab-7/open.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab-7/open.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab7/run_threaded.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab-5/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/lab5/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab-5/file_system.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab5/file_system.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab-5/open.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab5/open.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab-5/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab5/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab-7/file_system.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/file_system.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab-7/open.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/open.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab-7/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/run.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +33,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.run_threaded">
     <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="operating-system" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -47,8 +55,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="run_threaded" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="operating-system" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lab-7" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lab-7/run_threaded.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.run_threaded" />
         <item itemvalue="Python.run" />
       </list>
     </recent_temporary>
@@ -64,15 +94,16 @@
     </task>
     <servers />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/lab-7/open.py</url>
-          <line>30</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
