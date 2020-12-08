@@ -130,7 +130,8 @@ def delete(file_name):
         process_storage = DATA['process'][file_name]
         del DATA['process'][file_name]
         for i in process_storage:
-            DATA['clear'] += [i]
+            if i not in DATA['clear']:
+                DATA['clear'] += [i]
             del DATA['frames'][i]
         DATA['files'].remove(file_name)
         update_system()

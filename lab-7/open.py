@@ -13,8 +13,8 @@ class Open:
         try:
             clear_max = max([int(i) for i in self.data['clear']])
         except ValueError:
-            clear_max = 0
-        if self.first_free_frame < clear_max:
+            clear_max = -1                      # these changes may be problem
+        if self.first_free_frame <= clear_max:  # in case of error in memory assignment
             self.first_free_frame = clear_max + 1
         self.data['clear'] = [int(i) for i in self.data['clear']]
 
