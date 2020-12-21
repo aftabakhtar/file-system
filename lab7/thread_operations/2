@@ -1,0 +1,5 @@
+create('file1')
+file_opened = open_file('~/file1')
+file_opened.write_to_file('test data ', 0)
+data = file_opened.read_from_file()
+close_file(file_opened)

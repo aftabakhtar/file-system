@@ -2,22 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2539ce1-dd0b-4ee3-a93d-fb7bcbfe69f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lab7/run_threaded.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab7/text_window.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab7/thread_operations/0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab7/thread_operations/1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab7/thread_operations/2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab-5/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/lab5/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab-5/file_system.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab5/file_system.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab-5/open.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab5/open.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab-5/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab5/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab-7/file_system.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/file_system.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab-7/open.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/open.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab-7/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab7/run_threaded.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/run_threaded.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
