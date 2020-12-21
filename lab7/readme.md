@@ -49,7 +49,7 @@ This part of our project uses a hybrid approach between reading and writing the 
 in the `thread_operations` directory, but their output would be displayed in a window which would spawn after execution. A sample window looks like
 
 
-![Output Window for Threads](static/project_00.png)
+![Output Window for Threads](../static/project_00.png)
 
 
 **Note:** For `k` threads, `k` files are expected in `lab7/threads_operation` directory numbered from `0` to `k-1` and the program would spawn `k` windows to show execution results of the `k` threads.
