@@ -18,17 +18,6 @@ def spawn_window(n, data):
     sys.exit(app.exec_())
 
 
-def process_file(path):
-    full_path = 'thread_operations/' + str(path)
-    with open(full_path) as file_name:
-        file_data = file_name.read()
-
-    for action in file_data.split('\n'):
-        exec(action)
-
-    exec('spawn_window(path, text_str)')
-
-
 def command_translation(path):
     files_opened = dict()
     full_path = 'thread_operations/' + str(path)
