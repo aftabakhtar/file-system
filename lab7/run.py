@@ -26,7 +26,7 @@ def process_file(path):
     for action in file_data.split('\n'):
         exec(action)
 
-    exec('operation(path, data)')
+    exec('operation(path, text_str)')
 
 
 if __name__ == "__main__":

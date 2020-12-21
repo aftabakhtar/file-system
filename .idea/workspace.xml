@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2539ce1-dd0b-4ee3-a93d-fb7bcbfe69f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lab7/text_window.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab7/thread_operations/0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab7/thread_operations/1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab7/thread_operations/2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab7/thread_operations/3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab7/thread_operations/4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab7/run_threaded.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/run_threaded.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab7/file_system.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/file_system.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab7/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab7/text_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/text_window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab7/thread_operations/0" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/thread_operations/0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab7/thread_operations/1" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/thread_operations/1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab7/thread_operations/2" beforeDir="false" afterPath="$PROJECT_DIR$/lab7/thread_operations/2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +38,28 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Python.run_threaded">
+  <component name="RunManager" selected="Python.run (1)">
+    <configuration name="run (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="operating-system" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/lab7" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/lab7/run.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="operating-system" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -80,6 +104,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.run (1)" />
         <item itemvalue="Python.run_threaded" />
         <item itemvalue="Python.run" />
       </list>

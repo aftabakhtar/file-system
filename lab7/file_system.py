@@ -102,14 +102,20 @@ def list_dir():
     global DATA
     directories = DATA['dir']
     files = DATA['files']
+    out_list = 'Directories \n'
 
     for x in directories:
         # x = x.split(CWD)[1]
-        print(u"\U0001F4C2", x)
+        # print(u"\U0001F4C2", x)
+        out_list += str(x) + '\n'
 
+    out_list += '\nFiles\n'
     for x in files:
         # x = x.split(CWD)[1]
-        print(u"\U0001F5C4", x)
+        # print(u"\U0001F5C4", x)
+        out_list += str(x) + '\n'
+
+    return out_list
 
 
 def create(file_name):
@@ -120,8 +126,9 @@ def create(file_name):
         DATA['files'] += [new_file]
         DATA['process']['~/' + file_name] = []
         update_system()
+        return 'create(): file created successfully'
     else:
-        print('create(): cannot make file due to duplicate')
+        return 'create(): cannot make file due to duplicate'
 
 
 def delete(file_name):
@@ -134,9 +141,9 @@ def delete(file_name):
             del DATA['frames'][i]
         DATA['files'].remove(file_name)
         update_system()
-        print('successfully deleted %s', file_name)
+        return 'successfully deleted %s', file_name
     else:
-        print('delete(): make sure file name or path is correct')
+        return 'delete(): make sure file name or path is correct'
 
 
 def mk_dir(dir_name):
@@ -146,8 +153,9 @@ def mk_dir(dir_name):
     if new_directory not in DATA['dir'] and new_directory not in DATA['files']:
         DATA['dir'] += [new_directory]
         update_system()
+        return 'mk_dri(): directory created successfully'
     else:
-        print('mk_dir(): cannot make directory due to duplicate')
+        return 'mk_dir(): cannot make directory due to duplicate'
 
 
 def ch_dir(dir_name):
@@ -158,10 +166,10 @@ def ch_dir(dir_name):
             CWD = dir_name
         else:
             CWD = dir_name + '/'
-        print('successfully changed directory to %s' % dir_name)
-        print('cwd: %s' % CWD)
+        return 'successfully changed directory to %s' % dir_name
+        # print('cwd: %s' % CWD)
     else:
-        print('ch_dir(): cannot change directory, it does not exist')
+        return 'ch_dir(): cannot change directory, it does not exist'
 
 
 def move(source, destination):
@@ -178,20 +186,19 @@ def move(source, destination):
             DATA['files'].remove(source)
             DATA['process'][file_name] = DATA['process'].pop(source) # updating to new dictionary key
             update_system()
-            print("successfully moved the data from {} to {}".format(source, destination))
+            return "successfully moved the data from {} to {}".format(source, destination)
         else:
-            print("move(): make sure file names are not duplicating")
+            return "move(): make sure file names are not duplicating"
 
     else:
-        print('move(): error, make sure that source and destination are correct')
-
+        return 'move(): error, make sure that source and destination are correct'
 
 
 def open_file(file_name):
     if file_name in DATA['files']:
         return Open(file_name, DATA)
     else:
-        print('open_file(): invalid path or file_name')
+        return 'open_file(): invalid path or file_name'
 
 
 def close_file(file_name):
@@ -200,27 +207,29 @@ def close_file(file_name):
     DATA = data
     update_system()
     # print(DATA)
-    print('system updated successfully!')
+    return 'system updated successfully!'
 
 
 def show_memory():
-    print('=' * 40)
-    print('Process / Data Table')
-    print('=' * 40)
+    memory_map = '=' * 40 + '\n'
+    memory_map += 'Process / Data Table\n'
+    memory_map += '=' * 40 + '\n'
+
     for p in DATA['process']:
-        print(str(p) + '\t\t' + str(DATA['process'][p]))
-    print()
+        memory_map += (str(p) + '\t\t' + str(DATA['process'][p])) + '\n'
 
-    print('=' * 40)
-    print('Memory Table')
-    print('=' * 40)
+    memory_map += '\n' + '=' * 40 + '\n'
+    memory_map += 'Memory Table' + '\n'
+    memory_map += '=' * 40 + '\n'
+
     for p in DATA['frames']:
-        print(str(p) + '\t\t' + DATA['frames'][p])
-    print()
+        memory_map += (str(p) + '\t\t' + DATA['frames'][p]) + '\n'
 
-    print('=' * 40)
-    print('Cleared Memory Table')
-    print('=' * 40)
+    memory_map += '\n' + '=' * 40 + '\n'
+    memory_map += 'Cleared Memory Table' + '\n'
+    memory_map += '=' * 40 + '\n'
+
     for p in DATA['clear']:
-        print('Clear Frames:' + '\t\t' + str(p))
-    print()
+        memory_map += ('Clear Frames:' + '\t\t' + str(p)) + '\n'
+
+    return memory_map
