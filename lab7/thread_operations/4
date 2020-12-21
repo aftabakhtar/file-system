@@ -1,6 +1,6 @@
-text_str = create('file1')
-file_opened = open_file('~/file1')
-file_opened.write_to_file('test data 4', 0)
-text_str += '\n' + file_opened.read_from_file()
-text_str += '\n' + close_file(file_opened)
-text_str += '\n' + show_memory()
+create file1
+open file1
+file1.write('test', 0)
+file1.read()
+close file1
+mem

@@ -141,7 +141,7 @@ def delete(file_name):
             del DATA['frames'][i]
         DATA['files'].remove(file_name)
         update_system()
-        return 'successfully deleted %s', file_name
+        return 'successfully deleted %s' % file_name
     else:
         return 'delete(): make sure file name or path is correct'
 

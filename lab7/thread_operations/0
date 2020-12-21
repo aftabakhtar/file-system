@@ -1,8 +1,12 @@
-text_str = create('file1')
-file_opened = open_file('~/file1')
-print(isinstance(file_opened, Open))
-file_opened.write_to_file('test data 0', 0)
-text_str += '\n' + file_opened.read_from_file()
-text_str += '\n' + close_file(file_opened)
-text_str += '\n' + show_memory()
-text_str += '\n' + list_dir()
+create file1
+open file1
+file1.write('test', 0)
+file1.read()
+close file1
+delete file1
+mkdir test
+cd ~/test
+create file2
+move ~/test/file2 ~/
+mem
+ls
