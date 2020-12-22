@@ -36,7 +36,7 @@ def command_translation(path):
             display_string += '\n'
 
         elif 'delete' in action:
-            filename = '~/' + action.split(' ')[1]
+            filename = action.split(' ')[1]
             display_string += delete(filename)
             display_string += '\n'
 
@@ -58,7 +58,7 @@ def command_translation(path):
 
         elif 'open' in action:
             filename = action.split(' ')[1]
-            file_opened = open_file('~/' + filename)
+            file_opened = open_file(filename) # IMPORTANT CHANGE: moving to relative paths
             if isinstance(file_opened, Open):
                 try:
                     files_opened[filename] = file_opened

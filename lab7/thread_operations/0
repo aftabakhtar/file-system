@@ -7,6 +7,21 @@ delete file1
 mkdir test
 cd ~/test
 create file2
+open file2
+file2.write(<3)
+close file2
 move ~/test/file2 ~/
 mem
 ls
+cd ~/
+mkdir aftab
+cd ~/aftab
+create file3
+open file3
+file3.write(this is file3)
+file3.read()
+close file3
+ls
+mem
+delete file3
+mem

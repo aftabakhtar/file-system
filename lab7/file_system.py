@@ -124,7 +124,7 @@ def create(file_name):
 
     if new_file not in DATA['files'] and DATA['dir']:
         DATA['files'] += [new_file]
-        DATA['process']['~/' + file_name] = []
+        DATA['process'][new_file] = []  # IMPORTANT CHANGE: moving to relative paths
         update_system()
         return 'create(): file created successfully'
     else:
@@ -133,6 +133,10 @@ def create(file_name):
 
 def delete(file_name):
     global DATA
+    # IMPORTANT CHANGE: moving to relative paths
+    global CWD
+    file_name = CWD + file_name
+
     if file_name in DATA['files']:
         process_storage = DATA['process'][file_name]
         del DATA['process'][file_name]
@@ -195,6 +199,10 @@ def move(source, destination):
 
 
 def open_file(file_name):
+    # IMPORTANT CHANGE: moving to relative paths
+    global CWD
+    file_name = CWD + file_name
+
     if file_name in DATA['files']:
         return Open(file_name, DATA)
     else:
