@@ -28,7 +28,7 @@ def client():
     while message.lower().strip() != 'disconnect' and message != '':
         client_socket.send(message.encode())
         data = client_socket.recv(2048).decode()
-        print('Received from server: ' + data)
+        print(data)
         message = input('->')
 
     client_socket.close()

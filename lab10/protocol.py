@@ -53,7 +53,12 @@ def protocol(action, files_opened):
         if isinstance(file_opened, Open):
             try:
                 files_opened[filename] = file_opened
+                display_string += 'File opened successfully'
+                display_string += '\n'
+
             except KeyError:
+                display_string += 'Exception occurred while opening'
+                display_string += '\n'
                 raise KeyError
         else:
             display_string += file_opened
@@ -88,6 +93,9 @@ def protocol(action, files_opened):
                     text = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[0]
                     file.write_to_file(text)
 
+                display_string += 'File written successfully'
+                display_string += '\n'
+
             elif 'read' in file_action:
                 if file_action[file_action.find("(") + 1: file_action.find(")")] != '':
                     start = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[0]
@@ -103,13 +111,18 @@ def protocol(action, files_opened):
                 size = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[1]
                 target = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[2]
                 file.move_within_file(start=start, size=size, target=target)
+                display_string += 'Successfully moved within the file'
+                display_string += '\n'
 
             elif 'truncate' in file_action:
                 size = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[0]
                 file.truncate_file(size)
+                display_string += 'Successfully truncated the file'
+                display_string += '\n'
 
         except KeyError:
             display_string += 'The file required does not exists or is not opened'
+            display_string += '\n'
 
     else:
         display_string = 'Invalid command'
