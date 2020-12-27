@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2539ce1-dd0b-4ee3-a93d-fb7bcbfe69f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lab10/client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab10/file_system.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab10/open.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab10/run.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab10/server.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab10/text_window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/operating-system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/operating-system.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab10/protocol.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab10/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab10/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab10/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab10/server.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
