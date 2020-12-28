@@ -5,6 +5,7 @@ A wide array of commands can be queried to the file system, look at
 the command translation table for commands.
 The output from the server is also displayed through this script.
 """
+import sys
 import socket
 
 
@@ -14,12 +15,18 @@ def client():
     from the remote or local server.
     """
     # pre-requisites
-    host = socket.gethostname()
+    host = input('->Enter IP address: ')
     port = 5000
 
     # setting up the connection
     client_socket = socket.socket()
-    client_socket.connect((host, port))
+
+    # catching connection refuse exception
+    try:
+        client_socket.connect((host, port))
+    except ConnectionError:
+        print('Connection refused: make sure server is running and IP is correct')
+        sys.exit(0)
 
     print('Connection successfully established')
     print('Type disconnect or leave an empty line to disconnect at any time')

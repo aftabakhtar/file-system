@@ -17,11 +17,8 @@ def start_server():
     The server is continuously listening for connections from potentially multiple
     users.
     """
-    # loading file system
-    read_system()
-
     # socket pre-requisites
-    host = socket.gethostname()
+    host = ''
     port = 5000
 
     # binding the socket
@@ -41,17 +38,27 @@ def server_actions(connection, address):
     Modifies the file system according to the commands defined as per protocol and returns
     the response
     """
+    # loading file system
+    read_system()
+
     files_dict = dict()  # dictionary to keep track of opened files
 
     print('[{}] Established connection with: '.format(datetime.datetime.now().strftime('%H:%M:%S')) + str(address))
 
     while True:
         data = connection.recv(2048).decode()
+
+        # update the system
+        if 'ls' in data or 'cd' in data or 'create' in data or 'delete' in data or 'mkdir' in data or \
+                'move' in data or 'mem' in data or 'open' in data:
+            # reading the changes
+            read_system()
+
         if not data:
             break
         print('[{}] Message from '.format(datetime.datetime.now().strftime('%H:%M:%S')) + str(address) + ': ' + str(data))
-        data = protocol.protocol(data, files_dict)
-        connection.send(data.encode())
+        response = protocol.protocol(data, files_dict)
+        connection.send(response.encode())
 
     print('[{}] Terminated connection with: '.format(datetime.datetime.now().strftime('%H:%M:%S')) + str(address))
     connection.close()
