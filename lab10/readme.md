@@ -16,13 +16,12 @@ it in the listening mode where it would be accepting connections.
 accounts are created.
   
   
-  | Username | Password      | 
-| -------- | --------------- | 
-|  demo  | demo          | 
-| aftab  | demo       | 
-| basim  | demo         | 
-| abdullah   | demo         | 
-
+| Username | Password   |
+| -------- | -----------|
+|  demo    | demo       |
+| aftab    | demo       |
+| basim    | demo       |
+| abdullah | demo       |
 
 
 ### Command Translation
