@@ -6,6 +6,7 @@ the command translation table for commands.
 The output from the server is also displayed through this script.
 """
 import sys
+import json
 import socket
 
 
@@ -26,6 +27,18 @@ def client():
         client_socket.connect((host, port))
     except ConnectionError:
         print('Connection refused: make sure server is running and IP is correct')
+        sys.exit(0)
+
+    # taking credentials
+    username = input('->Enter username: ')
+    password = input('->Enter password: ')
+    credentials = json.dumps({"username": username, "password": password})
+    client_socket.send(credentials.encode())
+    credentials_status = int(client_socket.recv(2048).decode())
+
+    if credentials_status != 401:
+        print('Invalid username or password\nConnection with server terminated')
+        client_socket.close()
         sys.exit(0)
 
     print('Connection successfully established')

@@ -4,6 +4,8 @@ connection from the multiple users.
 It also takes action according to the protocol specified in the protocol.py file
 on the file system created in the sub-sequent labs.
 """
+import json
+import login
 import socket
 import multiprocessing
 import datetime
@@ -38,14 +40,34 @@ def server_actions(connection, address):
     Modifies the file system according to the commands defined as per protocol and returns
     the response
     """
+    con_status = True
+    response_code = 401
+
+    print('[{}] Connection request from: {}'.format(datetime.datetime.now().strftime('%H:%M:%S'), str(address)))
+
+    # validating credentials
+    credentials = connection.recv(2048).decode()
+    credentials = json.loads(credentials)
+    username = credentials['username']
+    password = credentials['password']
+
+    if not login.validate_login(username, password):
+        con_status = False
+        response_code = 403
+        print('[{}] Invalid credentials from: {}'.format(datetime.datetime.now().strftime('%H:%M:%S'), str(address)))
+
+    else:
+        print('[{}] Established connection with {}: '.format(datetime.datetime.now().strftime('%H:%M:%S'), username) + str(address))
+
+    # sending response code based on login
+    connection.send(str(response_code).encode())
+
     # loading file system
     read_system()
 
     files_dict = dict()  # dictionary to keep track of opened files
 
-    print('[{}] Established connection with: '.format(datetime.datetime.now().strftime('%H:%M:%S')) + str(address))
-
-    while True:
+    while con_status:
         data = connection.recv(2048).decode()
 
         # update the system
@@ -56,11 +78,11 @@ def server_actions(connection, address):
 
         if not data:
             break
-        print('[{}] Message from '.format(datetime.datetime.now().strftime('%H:%M:%S')) + str(address) + ': ' + str(data))
+        print('[{}] Message from {}'.format(datetime.datetime.now().strftime('%H:%M:%S'), username) + str(address) + ': ' + str(data))
         response = protocol.protocol(data, files_dict)
         connection.send(response.encode())
 
-    print('[{}] Terminated connection with: '.format(datetime.datetime.now().strftime('%H:%M:%S')) + str(address))
+    print('[{}] Terminated connection with {}: '.format(datetime.datetime.now().strftime('%H:%M:%S'), username) + str(address))
     connection.close()
 
 
