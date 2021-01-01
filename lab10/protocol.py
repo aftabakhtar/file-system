@@ -110,13 +110,13 @@ def protocol(action, files_opened):
                 start = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[0]
                 size = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[1]
                 target = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[2]
-                file.move_within_file(start=start, size=size, target=target)
+                file.move_within_file(start=int(start), size=int(size), target=int(target))
                 display_string += 'Successfully moved within the file'
                 display_string += '\n'
 
             elif 'truncate' in file_action:
                 size = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[0]
-                file.truncate_file(size)
+                file.truncate_file(int(size))
                 display_string += 'Successfully truncated the file'
                 display_string += '\n'
 
