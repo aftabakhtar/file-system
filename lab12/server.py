@@ -28,6 +28,10 @@ def start_server():
     server_socket.bind((host, port))
     server_socket.listen()
 
+    # reading sync data
+    read_system()
+    read_sync_data()
+
     # configuring the number of clients
     while True:
         connection, address = server_socket.accept()

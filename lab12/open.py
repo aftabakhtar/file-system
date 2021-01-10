@@ -131,3 +131,6 @@ class Open:
     def close(self):
         self.data['process'][self.path] = self.process
         return self.data
+
+    def get_path(self):
+        return self.path

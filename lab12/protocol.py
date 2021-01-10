@@ -80,7 +80,7 @@ def protocol(action, files_opened):
         display_string += '\n'
 
     elif action == 'sync':
-        display_string += read_sync_data()
+        display_string += print_sync_data()
         display_string += '\n'
 
     elif '.' in action:

@@ -6,6 +6,8 @@
 - [ ] Implement reader writers in either open_file(), or the Open class
 - [ ] Take only username
 
+SYNC_Primitives = [reader_sema, writer_sema, current_readers]
+
 ### How to Run
 To run the project follow these steps
 Make sure you have `python >= 3.5` (lower version may need manual backlog setting)

@@ -16,6 +16,8 @@ CLEAR_DELIMITER = '\$clear$'
 CWD = '~/'
 DATA = dict()
 SYNC = dict()
+READERS = []
+WRITERS = []
 
 
 def read_system():
@@ -23,14 +25,14 @@ def read_system():
         with open(FILE_SYSTEM, 'r') as fst:
             file_system_data = fst.read()
             get_data(file_system_data)
-            read_sync_data()
+            # read_sync_data()
 
     except IOError:
         fst = open(FILE_SYSTEM, 'w')
         get_data(DIR_DELIMITER + CWD + '\,' + DIR_DELIMITER)
         update_system()
         fst.close()
-        read_sync_data()
+        # read_sync_data()
         print('File created successfully!')
 
 
@@ -210,12 +212,20 @@ def move(source, destination):
 
 def open_file(file_name, permission):
     # IMPORTANT CHANGE: moving to relative paths
+    global SYNC
+    global READERS
+    global WRITERS
     global CWD
     file_name = CWD + file_name
 
     if file_name in DATA['files']:
         if str(permission).lower() == 'w':
             # handle the write synchronization here
+            # if file_name not in WRITERS:
+            #     WRITERS += [file_name]
+            SYNC[file_name][1].acquire()
+            WRITERS += [file_name]
+
             return Open(file_name, DATA, str(permission).lower())
 
         elif str(permission).lower() == 'r':
@@ -229,11 +239,19 @@ def open_file(file_name, permission):
 
 
 def close_file(file_name):
+    global SYNC
+    global WRITERS
+    global READERS
+    # print(DATA)
+
+    if file_name.get_path() in WRITERS:
+        SYNC[file_name.get_path()][1].release()
+        WRITERS.remove(file_name.get_path())
+
     data = file_name.close()
     global DATA
     DATA = data
     update_system()
-    # print(DATA)
     return 'system updated successfully!'
 
 
@@ -269,4 +287,7 @@ def read_sync_data():
     for file in files:
         SYNC[file] = [threading.Semaphore(), threading.Semaphore(), 0]
 
+
+def print_sync_data():
+    global SYNC
     return str(SYNC)
