@@ -230,6 +230,14 @@ def open_file(file_name, permission):
 
         elif str(permission).lower() == 'r':
             # handle the read synchronization here
+            SYNC[file_name][0].acquire()
+            SYNC[file_name][2] += 1
+
+            if SYNC[file_name][2] == 1:
+                SYNC[file_name][1].acquire()
+
+            SYNC[file_name][0].release()
+
             return Open(file_name, DATA, str(permission).lower())
 
         else:
@@ -244,9 +252,20 @@ def close_file(file_name):
     global READERS
     # print(DATA)
 
+    # writer
     if file_name.get_path() in WRITERS:
         SYNC[file_name.get_path()][1].release()
         WRITERS.remove(file_name.get_path())
+
+    # reader: we may need to add something in the READER list
+    else:
+        SYNC[file_name.get_path()][0].acquire()
+        SYNC[file_name.get_path()][2] -= 1
+
+        if SYNC[file_name.get_path()][2] == 0:
+            SYNC[file_name.get_path()][1].release()
+
+        SYNC[file_name.get_path()][0].release()
 
     data = file_name.close()
     global DATA
