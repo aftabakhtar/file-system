@@ -5,7 +5,8 @@ class Open:
     with function to manipulate and modify the file.
     """
 
-    def __init__(self, path, data):
+    def __init__(self, path, data, permission):
+        self.permission = permission
         self.data = data
         self.path = path
         self.page_length = 16
@@ -28,6 +29,9 @@ class Open:
         # print(self.process)
 
     def write_to_file(self, text, write_at=None):
+        if not self.permission == 'w':
+            return 'You do not possess write permissions'
+
         pages_left = self.get_page(text)
         text_start_idx = 0
 

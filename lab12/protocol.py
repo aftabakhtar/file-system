@@ -49,7 +49,8 @@ def protocol(action, files_opened):
 
     elif 'open' in action:
         filename = action.split(' ')[1]
-        file_opened = open_file(filename)  # IMPORTANT CHANGE: moving to relative paths
+        permission = action.split(' ')[2]
+        file_opened = open_file(filename, permission)  # IMPORTANT CHANGE: moving to relative paths
         if isinstance(file_opened, Open):
             try:
                 files_opened[filename] = file_opened
@@ -84,16 +85,20 @@ def protocol(action, files_opened):
 
         try:
             file = files_opened[filename]
+            write_flag = None
             if 'write' in file_action:
                 if len(file_action[file_action.find("(") + 1: file_action.find(")")].split(',')) > 1:
                     text = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[0]
                     offset = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[1]
-                    file.write_to_file(text, int(offset))
+                    write_flag = file.write_to_file(text, int(offset))
                 else:
                     text = file_action[file_action.find("(") + 1: file_action.find(")")].split(',')[0]
-                    file.write_to_file(text)
+                    write_flag = file.write_to_file(text)
 
-                display_string += 'File written successfully'
+                if write_flag == 'You do not possess write permissions':
+                    display_string += 'You do not possess write permissions'
+                else:
+                    display_string += 'File written successfully'
                 display_string += '\n'
 
             elif 'read' in file_action:

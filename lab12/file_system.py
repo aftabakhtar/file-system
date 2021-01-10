@@ -198,13 +198,22 @@ def move(source, destination):
         return 'move(): error, make sure that source and destination are correct'
 
 
-def open_file(file_name):
+def open_file(file_name, permission):
     # IMPORTANT CHANGE: moving to relative paths
     global CWD
     file_name = CWD + file_name
 
     if file_name in DATA['files']:
-        return Open(file_name, DATA)
+        if str(permission).lower() == 'w':
+            # handle the write synchronization here
+            return Open(file_name, DATA, str(permission).lower())
+
+        elif str(permission).lower() == 'r':
+            # handle the read synchronization here
+            return Open(file_name, DATA, str(permission).lower())
+
+        else:
+            return 'Invalid permission specified'
     else:
         return 'open_file(): invalid path or file_name'
 

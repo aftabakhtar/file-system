@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2539ce1-dd0b-4ee3-a93d-fb7bcbfe69f6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lab12/client.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab12/file_system.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab12/login.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab12/open.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab12/protocol.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab12/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab12/sample.fst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab12/server.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab12/users.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab12/file_system.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab12/file_system.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab12/open.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab12/open.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab12/protocol.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab12/protocol.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
