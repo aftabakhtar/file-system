@@ -79,6 +79,10 @@ def protocol(action, files_opened):
         display_string += show_memory()
         display_string += '\n'
 
+    elif action == 'sync':
+        display_string += read_sync_data()
+        display_string += '\n'
+
     elif '.' in action:
         filename = action.split('.')[0]
         file_action = action.split('.')[1]

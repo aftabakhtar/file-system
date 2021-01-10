@@ -1,5 +1,6 @@
 import ast
 from open import Open
+import threading
 
 """
 This script will be used to perform different actions on the
@@ -14,6 +15,7 @@ FRAME_DELIMITER = '\$memory$'
 CLEAR_DELIMITER = '\$clear$'
 CWD = '~/'
 DATA = dict()
+SYNC = dict()
 
 
 def read_system():
@@ -21,12 +23,14 @@ def read_system():
         with open(FILE_SYSTEM, 'r') as fst:
             file_system_data = fst.read()
             get_data(file_system_data)
+            read_sync_data()
 
     except IOError:
         fst = open(FILE_SYSTEM, 'w')
         get_data(DIR_DELIMITER + CWD + '\,' + DIR_DELIMITER)
         update_system()
         fst.close()
+        read_sync_data()
         print('File created successfully!')
 
 
@@ -120,12 +124,15 @@ def list_dir():
 
 def create(file_name):
     global DATA
+    global SYNC
     new_file = CWD + file_name
 
     if new_file not in DATA['files'] and DATA['dir']:
         DATA['files'] += [new_file]
         DATA['process'][new_file] = []  # IMPORTANT CHANGE: moving to relative paths
         update_system()
+
+        SYNC[new_file] = [threading.Semaphore(), threading.Semaphore(), 0]
         return 'create(): file created successfully'
     else:
         return 'create(): cannot make file due to duplicate'
@@ -133,6 +140,7 @@ def create(file_name):
 
 def delete(file_name):
     global DATA
+    global SYNC
     # IMPORTANT CHANGE: moving to relative paths
     global CWD
     file_name = CWD + file_name
@@ -145,6 +153,8 @@ def delete(file_name):
             del DATA['frames'][i]
         DATA['files'].remove(file_name)
         update_system()
+
+        del SYNC[file_name]
         return 'successfully deleted %s' % file_name
     else:
         return 'delete(): make sure file name or path is correct'
@@ -250,3 +260,13 @@ def show_memory():
         memory_map += ('Clear Frames:' + '\t\t' + str(p)) + '\n'
 
     return memory_map
+
+
+def read_sync_data():
+    global DATA
+    global SYNC
+    files = DATA['files']
+    for file in files:
+        SYNC[file] = [threading.Semaphore(), threading.Semaphore(), 0]
+
+    return str(SYNC)
