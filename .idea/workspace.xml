@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2539ce1-dd0b-4ee3-a93d-fb7bcbfe69f6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lab12/client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab12/file_system.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab12/login.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab12/open.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab12/protocol.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab12/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab12/sample.fst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab12/server.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab12/users.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab10/protocol.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab10/protocol.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,11 +45,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lab10" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lab12" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lab12" />
       <recent name="$PROJECT_DIR$/lab10" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
