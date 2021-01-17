@@ -18,6 +18,7 @@ DATA = dict()
 SYNC = dict()
 READERS = []
 WRITERS = []
+system_lock = threading.Semaphore()
 
 
 def read_system():
@@ -125,8 +126,12 @@ def list_dir():
 
 
 def create(file_name):
+    global system_lock
     global DATA
     global SYNC
+
+    system_lock.acquire()
+
     new_file = CWD + file_name
 
     if new_file not in DATA['files'] and DATA['dir']:
@@ -135,16 +140,22 @@ def create(file_name):
         update_system()
 
         SYNC[new_file] = [threading.Semaphore(), threading.Semaphore(), 0]
+        system_lock.release()
         return 'create(): file created successfully'
     else:
+        system_lock.release()
         return 'create(): cannot make file due to duplicate'
 
 
 def delete(file_name):
+    global system_lock
     global DATA
     global SYNC
     # IMPORTANT CHANGE: moving to relative paths
     global CWD
+
+    system_lock.acquire()
+
     file_name = CWD + file_name
 
     if file_name in DATA['files']:
@@ -157,20 +168,28 @@ def delete(file_name):
         update_system()
 
         del SYNC[file_name]
+        system_lock.release()
         return 'successfully deleted %s' % file_name
     else:
+        system_lock.release()
         return 'delete(): make sure file name or path is correct'
 
 
 def mk_dir(dir_name):
+    global system_lock
     global DATA
+
+    system_lock.acquire()
+
     new_directory = CWD + dir_name
 
     if new_directory not in DATA['dir'] and new_directory not in DATA['files']:
         DATA['dir'] += [new_directory]
         update_system()
+        system_lock.release()
         return 'mk_dri(): directory created successfully'
     else:
+        system_lock.release()
         return 'mk_dir(): cannot make directory due to duplicate'
 
 
@@ -189,6 +208,9 @@ def ch_dir(dir_name):
 
 
 def move(source, destination):
+    global system_lock
+    system_lock.acquire()
+
     if source in DATA['files'] and destination in DATA['dir']:
         file_name = source.split('/')[-1]
 
@@ -202,11 +224,14 @@ def move(source, destination):
             DATA['files'].remove(source)
             DATA['process'][file_name] = DATA['process'].pop(source) # updating to new dictionary key
             update_system()
+            system_lock.release()
             return "successfully moved the data from {} to {}".format(source, destination)
         else:
+            system_lock.release()
             return "move(): make sure file names are not duplicating"
 
     else:
+        system_lock.release()
         return 'move(): error, make sure that source and destination are correct'
 
 
