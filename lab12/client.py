@@ -31,8 +31,8 @@ def client():
 
     # taking credentials
     username = input('->Enter username: ')
-    password = input('->Enter password: ')
-    credentials = json.dumps({"username": username, "password": password})
+    # password = input('->Enter password: ')
+    credentials = json.dumps({"username": username, "password": "demo"})
     client_socket.send(credentials.encode())
     credentials_status = int(client_socket.recv(2048).decode())
 
