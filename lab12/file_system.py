@@ -139,7 +139,7 @@ def create(file_name):
         DATA['process'][new_file] = []  # IMPORTANT CHANGE: moving to relative paths
         update_system()
 
-        SYNC[new_file] = [threading.Semaphore(), threading.Semaphore(), 0]
+        SYNC[new_file] = [threading.Semaphore(), threading.Semaphore(), 0, threading.Semaphore()]
         system_lock.release()
         return 'create(): file created successfully'
     else:
@@ -248,6 +248,9 @@ def open_file(file_name, permission):
             # handle the write synchronization here
             # if file_name not in WRITERS:
             #     WRITERS += [file_name]
+            # no reader after writer
+            SYNC[file_name][3].acquire()
+
             SYNC[file_name][1].acquire()
             WRITERS += [file_name]
 
@@ -255,6 +258,10 @@ def open_file(file_name, permission):
 
         elif str(permission).lower() == 'r':
             # handle the read synchronization here
+
+            # no readers after writer
+            SYNC[file_name][3].acquire()
+
             SYNC[file_name][0].acquire()
             SYNC[file_name][2] += 1
 
@@ -262,6 +269,9 @@ def open_file(file_name, permission):
                 SYNC[file_name][1].acquire()
 
             SYNC[file_name][0].release()
+
+            # no readers after writer
+            SYNC[file_name][3].release()
 
             return Open(file_name, DATA, str(permission).lower())
 
@@ -281,6 +291,9 @@ def close_file(file_name):
     if file_name.get_path() in WRITERS:
         SYNC[file_name.get_path()][1].release()
         WRITERS.remove(file_name.get_path())
+
+        # no reader after writer
+        SYNC[file_name.get_path()][3].release()
 
     # reader: we may need to add something in the READER list
     else:
@@ -329,7 +342,7 @@ def read_sync_data():
     global SYNC
     files = DATA['files']
     for file in files:
-        SYNC[file] = [threading.Semaphore(), threading.Semaphore(), 0]
+        SYNC[file] = [threading.Semaphore(), threading.Semaphore(), 0, threading.Semaphore()]
 
 
 def print_sync_data():
